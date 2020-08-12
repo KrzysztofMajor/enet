@@ -92,3 +92,17 @@ add_library(enet STATIC
 if (MINGW)
     target_link_libraries(enet winmm ws2_32)
 endif()
+
+include(GNUInstallDirs)
+
+
+INSTALL(
+      TARGETS ${PROJECT_NAME} EXPORT EnetTargets
+      RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+
+message("${CMAKE_INSTALL_INCLUDEDIR}")
+
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILES_MATCHING PATTERN "*.h")
